@@ -94,12 +94,7 @@ public class SeriesUtils {
                     if(constraints == null) {
                         bounds.union(seriesBounds);
                     } else {
-                        if (constraints.contains(seriesBounds.getMinX(), seriesBounds.getMinY())) {
-                            bounds.union(seriesBounds.getMinX(), seriesBounds.getMinY());
-                        }
-                        if (constraints.contains(seriesBounds.getMaxX(), seriesBounds.getMaxY())) {
-                            bounds.union(seriesBounds.getMaxX(), seriesBounds.getMaxY());
-                        }
+                        bounds.union(constraints.constrainRegion(seriesBounds));
                     }
 
                 } else if (series.size() > 0) {

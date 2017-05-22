@@ -16,6 +16,8 @@
 
 package com.androidplot.xy;
 
+import android.support.annotation.NonNull;
+
 /**
  * Calculates the min/max constraints for an xy plane.
  *
@@ -73,6 +75,33 @@ public class XYConstraints {
         }
 
         return true;
+    }
+
+    @NonNull
+    public RectRegion constrainRegion(@NonNull RectRegion rectRegion) {
+        //copy the input parameter into a new instance
+        RectRegion constrainedRegion = new RectRegion();
+        if (minX != null && rectRegion.getMinX().doubleValue() < minX.doubleValue()) {
+            constrainedRegion.setMinX(minX);
+        } else {
+            constrainedRegion.setMinX(rectRegion.getMinX());
+        }
+        if (maxX != null && rectRegion.getMaxX().doubleValue() > maxX.doubleValue()) {
+            constrainedRegion.setMaxX(maxX);
+        } else {
+            constrainedRegion.setMaxX(rectRegion.getMaxX());
+        }
+        if (minY != null && rectRegion.getMinY().doubleValue() < minY.doubleValue()) {
+            constrainedRegion.setMinY(minY);
+        } else {
+            constrainedRegion.setMinY(rectRegion.getMinY());
+        }
+        if (maxY != null && rectRegion.getMaxY().doubleValue() > maxY.doubleValue()) {
+            constrainedRegion.setMaxY(maxY);
+        } else {
+            constrainedRegion.setMaxY(rectRegion.getMaxY());
+        }
+        return constrainedRegion;
     }
 
     public Number getMinX() {
